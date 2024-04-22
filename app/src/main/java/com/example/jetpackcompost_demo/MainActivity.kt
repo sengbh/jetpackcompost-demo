@@ -1,5 +1,6 @@
 package com.example.jetpackcompost_demo
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,13 +8,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcompost_demo.ui.theme.JetpackcompostdemoTheme
@@ -25,13 +27,7 @@ class MainActivity : ComponentActivity() {
             JetpackcompostdemoTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ){
-                        Column(modifier = Modifier.padding(bottom = 8.dp)){ CounterApp() }
-                        Column(){ UILayout() }
-                    }
+                   MainLayout()
                 }
             }
         }
@@ -85,5 +81,70 @@ fun UILayout() {
             "Welcome To Jetpack Compose!",
             style = MaterialTheme.typography.headlineSmall
         )
+    }
+}
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@Composable
+fun MainLayout(){
+    Scaffold(
+        topBar = {TopBarLayout()},
+        bottomBar = {BottomBarLayout()},
+        content = {
+           Box(
+               modifier = Modifier.fillMaxSize().padding(16.dp),
+               contentAlignment = Alignment.Center
+           ){
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                CounterApp()
+                UILayout()
+            }
+           }
+        }
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBarLayout(){
+    TopAppBar(
+        title = { Text("Top App Bar") },
+        colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primaryContainer),
+        navigationIcon = {
+            IconButton(onClick = {}) {
+                Icon(imageVector = Icons.Default.Person, null)
+            }
+        },
+        actions = {
+            IconButton(onClick = {}){
+                Icon(imageVector = Icons.Default.Menu, null)
+            }
+        },
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+
+@Composable
+fun BottomBarLayout(){
+    BottomAppBar(
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp),
+        modifier = Modifier.background(MaterialTheme.colorScheme.onBackground)
+    ){
+        Box(
+            modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+        ){
+            IconButton(onClick = {}, modifier = Modifier.align(Alignment.CenterStart)) {
+                Icon(imageVector = Icons.Default.Home, null)
+            }
+            IconButton(onClick = {}, modifier = Modifier.align(Alignment.Center)) {
+                Icon(imageVector = Icons.Default.Add, null)
+            }
+            IconButton(onClick = {}, modifier = Modifier.align(Alignment.CenterEnd)) {
+                Icon(imageVector = Icons.Default.Call, null)
+            }
+        }
     }
 }
