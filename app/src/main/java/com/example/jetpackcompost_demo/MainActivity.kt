@@ -18,6 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcompost_demo.ui.theme.JetpackcompostdemoTheme
 
 class MainActivity : ComponentActivity() {
@@ -87,24 +90,54 @@ fun UILayout() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainLayout(){
+    val navigationController = rememberNavController()
+    val selectTab by remember { mutableIntStateOf(0) }
     Scaffold(
         topBar = {TopBarLayout()},
         bottomBar = {BottomBarLayout()},
-        content = {
-           Box(
-               modifier = Modifier.fillMaxSize().padding(16.dp),
-               contentAlignment = Alignment.Center
-           ){
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                CounterApp()
-                UILayout()
+//        content = {
+//           Box(
+//               modifier = Modifier.fillMaxSize().padding(16.dp),
+//               contentAlignment = Alignment.Center
+//           ){
+//            Column(
+//                horizontalAlignment = Alignment.CenterHorizontally,
+//                verticalArrangement = Arrangement.Center
+//            ) {
+//                CounterApp()
+//                UILayout()
+//            }
+//           }
+//        }
+    ){
+        NavHost(
+            navigationController,
+            "home",
+            modifier = Modifier.padding(it)
+        ){
+            composable(route = "home"){
+                when (selectTab) {
+                    0 -> Tab1()
+                    1 -> Tab2()
+                    else -> {}
+                }
             }
-           }
         }
-    )
+    }
+}
+
+@Composable
+fun Tab1(){
+Column {
+    Text("TEST 1")
+}
+}
+
+@Composable
+fun Tab2(){
+Column {
+    Text("TEST 2")
+}
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
