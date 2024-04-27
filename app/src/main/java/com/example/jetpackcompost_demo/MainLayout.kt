@@ -9,7 +9,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -21,7 +20,7 @@ fun MainLayout() {
     val selectTab by remember { mutableIntStateOf(0) }
 
     Scaffold(
-        topBar = { TopBarLayout() },
+        topBar = { TopBarLayout(navigationController) },
         bottomBar = { BottomBarLayout(navigationController) },
         content = {
             NavHost(
@@ -37,6 +36,9 @@ fun MainLayout() {
                 }
                 composable(ScreenPageObject.Resource.route){
                     ResourcePage()
+                }
+                composable(ScreenPageObject.Settings.route){
+                    SettingsPage()
                 }
             }
         }
