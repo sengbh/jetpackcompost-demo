@@ -26,16 +26,16 @@ fun MainLayout() {
         content = {
             NavHost(
                 navigationController,
-                "home",
+                startDestination = ScreenPageObject.Home.route,
                 modifier = Modifier.padding(it).fillMaxSize()
             ) {
-                composable(route = "home") {
+                composable(ScreenPageObject.Home.route) {
                     HomePage(navigationController)
                 }
-                composable(route = "news"){
+                composable(ScreenPageObject.News.route){
                     NewsPage(navigationController)
                 }
-                composable(route = "resource"){
+                composable(ScreenPageObject.Resource.route){
                     ResourcePage()
                 }
             }
