@@ -1,14 +1,8 @@
 package com.example.jetpackcompost_demo
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -17,7 +11,6 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun MainLayout() {
     val navigationController = rememberNavController()
-    val selectTab by remember { mutableIntStateOf(0) }
 
     Scaffold(
         topBar = { TopBarLayout(navigationController) },
@@ -25,19 +18,19 @@ fun MainLayout() {
         content = {
             NavHost(
                 navigationController,
-                startDestination = ScreenPageObject.Home.route,
-                modifier = Modifier.padding(it).fillMaxSize()
+                startDestination = ScreenPageBottom.Home.route,
+//                modifier = Modifier.padding(it).fillMaxSize()
             ) {
-                composable(ScreenPageObject.Home.route) {
+                composable(ScreenPageBottom.Home.route) {
                     HomePage(navigationController)
                 }
-                composable(ScreenPageObject.News.route){
+                composable(ScreenPageBottom.News.route){
                     NewsPage(navigationController)
                 }
-                composable(ScreenPageObject.Resource.route){
+                composable(ScreenPageBottom.Resource.route){
                     ResourcePage()
                 }
-                composable(ScreenPageObject.Settings.route){
+                composable(ScreenPageTop.Settings.route){
                     SettingsPage()
                 }
             }

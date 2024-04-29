@@ -30,7 +30,7 @@ fun TopBarLayout(navController: NavController) {
         },
         actions = {
             IconButton(
-                onClick = { navController.navigate(ScreenPageObject.Settings.route) }
+                onClick = { navController.navigate(ScreenPageTop.Settings.route) }
             ) {
                 Icon(imageVector = Icons.Default.Settings, null)
             }
