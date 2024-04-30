@@ -1,16 +1,13 @@
 package com.example.jetpackcompost_demo
 
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -18,24 +15,18 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun BottomBarLayout(navController: NavController) {
-    val screens = listOf(
-        ScreenPageBottom.Home,
-        ScreenPageBottom.News,
-        ScreenPageBottom.Resource
-    )
+
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    BottomNavigation(
-        backgroundColor = MaterialTheme.colorScheme.inversePrimary //bottom bar background color
+    BottomAppBar(
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp),
+//        modifier = Modifier.background(MaterialTheme.colorScheme.onBackground)
     ) {
-        screens.forEach { screen ->
-            AddItem(
-                screen = screen,
-                currentDestination = currentDestination,
-                navController = navController
-            )
-        }
+        BottomBarItem(
+            currentDestination,
+            navController
+        )
     }
 
 //    BottomAppBar(
@@ -96,27 +87,50 @@ fun BottomBarLayout(navController: NavController) {
 }
 
 @Composable
-fun RowScope.AddItem(
-    screen: ScreenPageBottom,
+fun BottomBarItem(
     currentDestination: NavDestination?,
     navController: NavController
 ) {
-    BottomNavigationItem(
-        label = {
-            Text(text = screen.title)
-        },
-        icon = {
-            Icon(
-                imageVector = screen.icon,
-                "Navigation Icon"
-            )
-        },
-        selected = currentDestination?.hierarchy?.any{
-            it.route == screen.route
-        } ==  true,
-        unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
-        onClick = {
-            navController.navigate(screen.route)
-        }
+    val screens = listOf(
+        ScreenPageBottom.Home,
+        ScreenPageBottom.News,
+        ScreenPageBottom.Resource
     )
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+//        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        screens.forEach { screen ->
+            val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
+            val iconColor =
+                if (selected) MaterialTheme.colorScheme.primary else Color.Gray
+            val textColor =
+                if (selected) MaterialTheme.colorScheme.primary else Color.Gray
+
+            TextButton(
+                onClick = { navController.navigate(screen.route) },
+                modifier = Modifier.weight(1f)
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        imageVector = screen.icon,
+                        null,
+                        tint = iconColor
+                    )
+                    Text(
+                        text = screen.title,
+                        color = textColor
+                    )
+                }
+//                Text(
+//                    text = screen.title,
+//                    color = textColor
+//                )
+            }
+        }
+    }
+
 }
