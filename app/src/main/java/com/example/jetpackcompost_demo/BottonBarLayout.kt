@@ -92,23 +92,26 @@ fun BottomBarItem(
     navController: NavController
 ) {
     val screens = listOf(
-        ScreenPageBottom.Home,
-        ScreenPageBottom.News,
-        ScreenPageBottom.Resource
+        ScreenPageObjectBottom.Home,
+        ScreenPageObjectBottom.News,
+        ScreenPageObjectBottom.Resource
     )
     Row(
         modifier = Modifier.fillMaxWidth(),
-//        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         screens.forEach { screen ->
-            val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
+            val selected = currentDestination?.hierarchy?.any {
+                it.route == screen.route
+            } == true
             val iconColor =
                 if (selected) MaterialTheme.colorScheme.primary else Color.Gray
             val textColor =
                 if (selected) MaterialTheme.colorScheme.primary else Color.Gray
 
             TextButton(
-                onClick = { navController.navigate(screen.route) },
+                onClick = {
+                    navController.navigate(screen.route)
+                },
                 modifier = Modifier.weight(1f)
             ) {
                 Column(
@@ -125,10 +128,6 @@ fun BottomBarItem(
                         color = textColor
                     )
                 }
-//                Text(
-//                    text = screen.title,
-//                    color = textColor
-//                )
             }
         }
     }
