@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun HomePage(navController: NavController) {
+fun HomePage() {
 
 //    Column(
 //        modifier = Modifier.fillMaxSize(),

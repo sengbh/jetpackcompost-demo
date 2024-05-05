@@ -1,12 +1,11 @@
 package com.example.jetpackcompost_demo
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -15,7 +14,6 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun MainLayout() {
     val navigationController = rememberNavController()
-
     Scaffold(
         topBar = { TopBarLayout(navigationController) },
         bottomBar = { BottomBarLayout(navigationController) },
@@ -26,7 +24,7 @@ fun MainLayout() {
                 modifier = Modifier.padding(it)
             ) {
                 composable(ScreenPageObjectBottom.Home.route) {
-                    HomePage(navigationController)
+                    HomePage()
                 }
                 composable(ScreenPageObjectBottom.News.route){
                     NewsPage(navigationController)
