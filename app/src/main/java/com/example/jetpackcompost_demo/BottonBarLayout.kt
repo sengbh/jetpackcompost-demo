@@ -21,7 +21,7 @@ fun BottomBarLayout(navController: NavController) {
 
     BottomAppBar(
         contentPadding = PaddingValues(start = 16.dp, end = 16.dp),
-//        modifier = Modifier.background(MaterialTheme.colorScheme.onBackground)
+//        containerColor = Color.LightGray
     ) {
         BottomBarItem(
             currentDestination,

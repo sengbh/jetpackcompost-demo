@@ -39,7 +39,7 @@ fun TopBarLayout(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             )
         },
-        colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primaryContainer),
+//        colors = TopAppBarDefaults.topAppBarColors(Color.LightGray), //top bar background color
         navigationIcon = {
             IconButton(onClick = {}) {
                 Icon(imageVector = Icons.Default.Person, null)

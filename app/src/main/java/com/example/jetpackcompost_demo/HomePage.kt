@@ -15,30 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+
 
 @Composable
 fun HomePage() {
-
-//    Column(
-//        modifier = Modifier.fillMaxSize(),
-//        horizontalAlignment = Alignment.CenterHorizontally,
-//        verticalArrangement = Arrangement.Center
-//    ){
-//        Text(
-//            "This is home screen",
-//            color = MaterialTheme.colorScheme.onBackground,
-//            fontWeight = FontWeight.Bold,
-//            fontSize = MaterialTheme.typography.bodyLarge.fontSize,
-//            modifier = Modifier.padding(bottom = 16.dp)
-//        )
-//        CounterApp()
-//        Spacer(modifier = Modifier.height(16.dp))
-//        UILayout()
-//    }
-
     val newsList = listOf(
         DataClass(
+
             "Title 1",
             "Description 1",
             imageNews = Icons.Default.Image
