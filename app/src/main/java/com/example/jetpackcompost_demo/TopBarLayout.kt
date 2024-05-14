@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -39,7 +40,7 @@ fun TopBarLayout(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             )
         },
-//        colors = TopAppBarDefaults.topAppBarColors(Color.LightGray), //top bar background color
+        colors = TopAppBarDefaults.topAppBarColors(Color(0xFFE0E0E0)), //top bar background color
         navigationIcon = {
             IconButton(onClick = {}) {
                 Icon(imageVector = Icons.Default.Person, null)
