@@ -1,6 +1,7 @@
 package com.example.jetpackcompost_demo
 
 import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -44,10 +45,16 @@ fun SettingsPage() {
         SettingsItem(text = "Feedback") {
             // Handle feedback click
             // Example: Launch feedback activity or send an email
+            val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:seng4510@gmail.com")
+                putExtra(Intent.EXTRA_SUBJECT, "Feedback")
+            }
+            val emailChooserIntent = Intent.createChooser(emailIntent, "Send Feedback")
+            context.startActivity(emailChooserIntent)
         }
         SettingsItem(text = "Request features") {
             // Handle donation click
-            // Example: Launch donation activity
+            // Example: Launch request features activity
         }
         SettingsItem(text = "Invite Friends") {
             // Handle invite friends
