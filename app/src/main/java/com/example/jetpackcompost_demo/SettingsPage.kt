@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -42,7 +43,7 @@ fun SettingsPage() {
             ),
             modifier = Modifier.padding(bottom = 16.dp)
         )
-        SettingsItem(text = "Feedback") {
+        SettingsItem(text = "Feedback", icon = Icons.AutoMirrored.Filled.ArrowForward) {
             // Handle feedback click
             // Example: Launch feedback activity or send an email
             val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
@@ -52,11 +53,11 @@ fun SettingsPage() {
             val emailChooserIntent = Intent.createChooser(emailIntent, "Send Feedback")
             context.startActivity(emailChooserIntent)
         }
-        SettingsItem(text = "Request features") {
+        SettingsItem(text = "Request features", icon = Icons.AutoMirrored.Filled.ArrowForward) {
             // Handle donation click
             // Example: Launch request features activity
         }
-        SettingsItem(text = "Invite Friends") {
+        SettingsItem(text = "Invite Friends", icon = Icons.AutoMirrored.Filled.ArrowForward) {
             // Handle invite friends
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
@@ -66,11 +67,19 @@ fun SettingsPage() {
             val shareIntent = Intent.createChooser(sendIntent, null)
             context.startActivity(shareIntent)
         }
+        Spacer(modifier = Modifier.weight(1f)) //push the version column to the bottom of the column
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("version 0.0.1")
+        }
     }
 }
 
 @Composable
-fun SettingsItem(text: String, onClick: () -> Unit) {
+fun SettingsItem(text: String, icon: ImageVector, onClick: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -88,7 +97,7 @@ fun SettingsItem(text: String, onClick: () -> Unit) {
             modifier = Modifier.weight(1f)
         )
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+            imageVector = icon,
             contentDescription = null,
             tint = Color.Gray
         )

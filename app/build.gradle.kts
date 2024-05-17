@@ -61,7 +61,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("com.google.firebase:protolite-well-known-types:18.0.0")
     implementation("androidx.leanback:leanback:1.0.0")
-//    implementation("androidx.compose.material3:material3-android:1.2.1")
+//    implementation("androidx.compose.foundation:foundation-desktop:1.6.7")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -72,7 +72,6 @@ dependencies {
 
     //manually added
     implementation ("io.coil-kt:coil-compose:2.4.0")
-
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.6.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("io.ktor:ktor-client-okhttp-jvm:2.3.6")

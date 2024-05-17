@@ -33,54 +33,6 @@ fun ResourcePage() {
     LazyColumn(contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         item {
             Row(modifier = Modifier.padding(end = 8.dp)) {
-                Text("Popular Dapps", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-            }
-        }
-        items(
-            listOf(
-                ResourceList(
-                    "Coinbase",
-                    "This ABC dapp is important etc",
-                    image = "https://assets.coingecko.com/markets/images/23/large/Coinbase_Coin_Primary.png?1706864258",
-                    url = "https://www.coinbase.com/learn/crypto-basics"
-                ),
-                ResourceList(
-                    "Kraken",
-                    "This ABC dapp is important etc",
-                    image = "https://assets.coingecko.com/markets/images/29/large/kraken.jpg?1706864265",
-                    url = "https://www.kraken.com/"
-                ),
-            )
-        ) { resource ->
-            ElevatedCard(
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFF8F8F8)),
-                modifier = Modifier.clickable {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(resource.url))
-                    context.startActivity(intent)
-                }
-            ) {
-                Row(
-                    modifier = Modifier.padding(8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text(resource.name, style = MaterialTheme.typography.labelSmall)
-                        Text(
-                            resource.description,
-                            color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                    }
-                    Image(
-                        painter = rememberAsyncImagePainter(resource.image),
-                        contentDescription = null,
-                        modifier = Modifier.size(64.dp)
-                    )
-                }
-            }
-        }
-        item {
-            Row(modifier = Modifier.padding(end = 8.dp)) {
                 Text("Crypto for Dummies", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
             }
             Column(modifier = Modifier.padding(top = 8.dp)) {
@@ -151,7 +103,56 @@ fun ResourcePage() {
                 }
             }
         }
-
+        item {
+            Row(modifier = Modifier.padding(end = 8.dp)) {
+                Text("Popular Dapps", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+            }
+        }
+        items(
+            listOf(
+                ResourceList(
+                    "Coinbase",
+                    "This ABC dapp is important etc",
+                    image = "https://assets.coingecko.com/markets/images/23/large/Coinbase_Coin_Primary.png?1706864258",
+                    url = "https://www.coinbase.com/learn/crypto-basics"
+                ),
+                ResourceList(
+                    "Kraken",
+                    "This ABC dapp is important etc",
+                    image = "https://assets.coingecko.com/markets/images/29/large/kraken.jpg?1706864265",
+                    url = "https://www.kraken.com/"
+                ),
+            )
+        ) { resource ->
+            ElevatedCard(
+                colors = CardDefaults.cardColors(containerColor = Color(0xFFF8F8F8)),
+                modifier = Modifier
+                    .padding(start = 8.dp)
+                    .clickable {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(resource.url))
+                    context.startActivity(intent)
+                }
+            ) {
+                Row(
+                    modifier = Modifier.padding(8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(resource.name, style = MaterialTheme.typography.labelSmall)
+                        Text(
+                            resource.description,
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                    Image(
+                        painter = rememberAsyncImagePainter(resource.image),
+                        contentDescription = null,
+                        modifier = Modifier.size(64.dp)
+                    )
+                }
+            }
+        }
         item {
             Row(modifier = Modifier.padding(end = 8.dp)) {
                 Text("Crypto for Dummies", style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
