@@ -28,7 +28,7 @@ fun TopBarLayout(navController: NavController) {
     //update title based on current destination
     LaunchedEffect(currentDestination){
         title.value = when(currentDestination?.route){
-            ScreenPageObjectBottom.Home.route -> "Market"
+            ScreenPageObjectBottom.Home.route -> "Markets"
             ScreenPageObjectBottom.News.route -> "News"
             ScreenPageObjectBottom.Resource.route -> "Resources"
             ScreenPageObjectTop.Settings.route -> "Settings"
