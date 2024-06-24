@@ -61,6 +61,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("com.google.firebase:protolite-well-known-types:18.0.0")
     implementation("androidx.leanback:leanback:1.0.0")
+    implementation("androidx.compose.material3:material3-android:1.2.1")
 //    implementation("androidx.compose.foundation:foundation-desktop:1.6.7")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -79,5 +80,10 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:2.3.6")
     implementation("io.ktor:ktor-client-content-negotiation:2.3.6")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:2.3.6")
+
+    implementation ("androidx.compose.material3:material3:1.2.1")
+
+    //CoinGecko SDK - https://github.com/DrewCarlson/CoinGecko-Kotlin
+    implementation("org.drewcarlson:coingecko:1.0.0-beta02")
 
 }

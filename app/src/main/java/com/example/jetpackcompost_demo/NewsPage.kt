@@ -114,7 +114,6 @@ fun NewsItem(news: Results) {
             ) {
                 append(news.title)
             }
-
             withStyle(
                 ParagraphStyle(lineBreak = LineBreak.Simple)
             ) {
@@ -135,7 +134,6 @@ fun NewsItem(news: Results) {
                 .height(80.dp)
         ) {
             val apikey = "H8n02HVepdIlsUW+8tCY3w==xtqjj92rXBDoMTrK"
-            val context = LocalContext.current
             AsyncImage(
                 model = remember {
                     ImageRequest.Builder(context)
